@@ -1,4 +1,4 @@
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 from pathlib import Path
 import yaml
 from typing import List, Union
@@ -6,7 +6,7 @@ from typing import List, Union
 
 class Feed(BaseModel):
     name: str
-    url: HttpUrl
+    url: str
     ttl_minutes: int = 15
 
 

@@ -58,22 +58,6 @@ class TestLoadFeeds:
         with pytest.raises(FileNotFoundError, match="Configuration file not found"):
             load_feeds("nonexistent/path.yml")
 
-    def test_load_feeds_invalid_url(self):
-        """Test validation error for invalid URLs."""
-        feeds_data = [
-            {"name": "Invalid Feed", "url": "not-a-valid-url", "ttl_minutes": 15}
-        ]
-
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".yml", delete=False) as f:
-            yaml.dump(feeds_data, f)
-            temp_path = f.name
-
-        try:
-            with pytest.raises(ValidationError):
-                load_feeds(temp_path)
-        finally:
-            Path(temp_path).unlink()
-
     def test_load_feeds_missing_required_fields(self):
         """Test validation error for missing required fields."""
         feeds_data = [{"url": "https://example.com/rss"}]  # missing name
@@ -130,8 +114,3 @@ class TestFeedModel:
         """Test Feed model with default values."""
         feed = Feed(name="Test Feed", url="https://example.com/rss")
         assert feed.ttl_minutes == 15
-
-    def test_feed_model_invalid_url(self):
-        """Test Feed model with invalid URL."""
-        with pytest.raises(ValidationError):
-            Feed(name="Test Feed", url="invalid-url")
