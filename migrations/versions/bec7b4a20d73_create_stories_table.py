@@ -1,7 +1,7 @@
 """Create stories table
 
 Revision ID: bec7b4a20d73
-Revises: 
+Revises:
 Create Date: 2025-07-03 17:33:51.153769
 
 """

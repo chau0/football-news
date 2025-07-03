@@ -37,7 +37,7 @@ jobs:
     - name: Lint with ruff
       run: |
         ruff check . --output-format=github
-        ruff format --check .
+        ruff format --check . || (echo "Code formatting issues found. Run 'ruff format .' locally to fix." && exit 1)
     
     - name: Type check with mypy
       run: mypy .
