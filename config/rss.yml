@@ -1,0 +1,12 @@
+feeds:
+  - name: "ESPN Football"
+    url: "https://www.espn.com/espn/rss/news"
+    ttl_minutes: 15
+
+  - name: "BBC Sport Football"
+    url: "https://feeds.bbci.co.uk/sport/football/rss.xml"
+    ttl_minutes: 10
+
+  - name: "Sky Sports Football"
+    url: "https://www.skysports.com/rss/football"
+    ttl_minutes: 20

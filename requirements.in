@@ -1,0 +1,10 @@
+httpx
+feedparser
+sqlalchemy
+aiosqlite
+pydantic
+apscheduler
+typer
+rich
+orjson
+python-dotenv
