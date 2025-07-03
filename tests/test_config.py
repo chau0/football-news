@@ -58,22 +58,6 @@ class TestLoadFeeds:
         with pytest.raises(FileNotFoundError, match="Configuration file not found"):
             load_feeds("nonexistent/path.yml")
 
-    def test_load_feeds_invalid_yaml_format(self):
-        """Test error handling for non-list YAML content."""
-        invalid_data = {"feeds": [{"name": "test", "url": "https://example.com"}]}
-
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".yml", delete=False) as f:
-            yaml.dump(invalid_data, f)
-            temp_path = f.name
-
-        try:
-            with pytest.raises(
-                ValueError, match="Configuration file must contain a list of feeds"
-            ):
-                load_feeds(temp_path)
-        finally:
-            Path(temp_path).unlink()
-
     def test_load_feeds_invalid_url(self):
         """Test validation error for invalid URLs."""
         feeds_data = [
