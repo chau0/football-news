@@ -20,7 +20,17 @@ def load_feeds(path: Union[str, Path] = "config/rss.yml") -> List[Feed]:
     with open(config_path, "r", encoding="utf-8") as file:
         data = yaml.safe_load(file)
 
-    if not isinstance(data, list):
-        raise ValueError("Configuration file must contain a list of feeds")
+    # Handle both nested structure (feeds: [...]) and flat structure ([...])
+    if isinstance(data, dict) and "feeds" in data:
+        feeds_data = data["feeds"]
+    elif isinstance(data, list):
+        feeds_data = data
+    else:
+        raise ValueError(
+            "Configuration file must contain either a list of feeds or a 'feeds' key with a list of feeds"
+        )
 
-    return [Feed(**feed) for feed in data]
+    if not isinstance(feeds_data, list):
+        raise ValueError("Feeds data must be a list")
+
+    return [Feed(**feed) for feed in feeds_data]
