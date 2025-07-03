@@ -5,3 +5,4 @@ ruff
 black
 pre-commit
 alembic
+mypy
