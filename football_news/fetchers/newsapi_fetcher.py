@@ -9,9 +9,7 @@ from football_news.middlewares.ratelimit import with_rate_limit
 from football_news.storage.db import SessionLocal
 from football_news.storage.models import Story
 import httpx
-import logging
-
-logger = logging.getLogger(__name__)
+from football_news.utils.logger import logger
 
 
 class NewsAPIFetcher(BaseFetcher):

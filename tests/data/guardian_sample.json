@@ -1,0 +1,49 @@
+{
+  "response": {
+    "status": "ok",
+    "userTier": "developer",
+    "total": 1389,
+    "startIndex": 1,
+    "pageSize": 10,
+    "currentPage": 1,
+    "pages": 139,
+    "orderBy": "newest",
+    "results": [
+      {
+        "id": "world/2025/jul/06/sample-article-title",
+        "type": "article",
+        "sectionId": "world",
+        "sectionName": "World news",
+        "webPublicationDate": "2025-07-06T10:00:00Z",
+        "webTitle": "Sample Article Title",
+        "webUrl": "https://www.theguardian.com/world/2025/jul/06/sample-article-title",
+        "apiUrl": "https://content.guardianapis.com/world/2025/jul/06/sample-article-title",
+        "fields": {
+          "headline": "Sample Article Headline",
+          "byline": "Author Name",
+          "thumbnail": "https://media.theguardian.com/image.jpg",
+          "body": "<p>Sample article content...</p>"
+        },
+        "tags": [
+          {
+            "id": "world/politics",
+            "type": "keyword",
+            "webTitle": "Politics",
+            "webUrl": "https://www.theguardian.com/world/politics",
+            "apiUrl": "https://content.guardianapis.com/world/politics"
+          },
+          {
+            "id": "profile/author-name",
+            "type": "contributor",
+            "webTitle": "Author Name",
+            "webUrl": "https://www.theguardian.com/profile/author-name",
+            "apiUrl": "https://content.guardianapis.com/profile/author-name"
+          }
+        ],
+        "isHosted": false,
+        "pillarId": "pillar/news",
+        "pillarName": "News"
+      }
+    ]
+  }
+}

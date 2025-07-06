@@ -4,7 +4,7 @@ import asyncio
 import datetime as dt
 import hashlib
 import os
-import logging
+
 
 from sqlalchemy.dialects.sqlite import insert
 import httpx
@@ -13,8 +13,7 @@ from football_news.fetchers.base import BaseFetcher
 from football_news.middlewares.ratelimit import with_rate_limit
 from football_news.storage.db import SessionLocal
 from football_news.storage.models import Story
-
-logger = logging.getLogger(__name__)
+from football_news.utils.logger import logger
 
 
 class GuardianFetcher(BaseFetcher):
@@ -34,6 +33,7 @@ class GuardianFetcher(BaseFetcher):
         try:
             response = await self._call()
             data = response.json()
+            # logger.info(f"Fetched data from Guardian API: {data}")
 
             # Check Guardian API response structure
             if "response" not in data:
