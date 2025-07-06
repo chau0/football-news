@@ -3,9 +3,7 @@ import pytest
 import respx
 
 from football_news.fetchers.guardian_fetcher import GuardianFetcher
-from dotenv import load_dotenv
 
-load_dotenv()
 with open("tests/data/guardian_sample.json") as f:
     fixture_json = json.load(f)
 
@@ -13,10 +11,10 @@ with open("tests/data/guardian_sample.json") as f:
 @pytest.mark.asyncio
 @respx.mock
 async def test_guardian(monkeypatch):
-    monkeypatch.setenv("GUARDIAN_KEY", "dummy")  # Set environment variable for test
+    monkeypatch.setenv("GUARDIAN_KEY", "dummy")
     cfg = {
         "name": "guardian",
-        "endpoint": "https://content.guardianapis.com/search?section=football&show-fields=body&api-key={api_key}",  # Changed to {api_key}
+        "endpoint": "https://content.guardianapis.com/search?section=football&show-fields=body&api-key=${GUARDIAN_KEY}",
         "quota_day": 500,
         "quota_sec": 1,
     }

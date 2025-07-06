@@ -5,7 +5,6 @@ import datetime as dt
 import hashlib
 import os
 
-
 from sqlalchemy.dialects.sqlite import insert
 import httpx
 
@@ -19,9 +18,21 @@ from football_news.utils.logger import logger
 class GuardianFetcher(BaseFetcher):
     def __init__(self, cfg: dict):
         super().__init__(cfg)
-        # Fix URL construction - use the api_key placeholder from config
-        api_key = os.environ["GUARDIAN_KEY"]
-        self.url = cfg["endpoint"].format(api_key=api_key)
+
+        endpoint = cfg["endpoint"]
+
+        # Check if endpoint needs api_key formatting
+        if "{api_key}" in endpoint:
+            # Use api_key from config if available, otherwise fall back to environment
+            if "api_key" in cfg:
+                api_key = cfg["api_key"]
+            else:
+                api_key = os.environ["GUARDIAN_KEY"]
+            self.url = endpoint.format(api_key=api_key)
+        else:
+            # Endpoint doesn't need formatting (e.g., ${GUARDIAN_KEY} should be expanded)
+            # Expand environment variables in the endpoint
+            self.url = os.path.expandvars(endpoint)
 
     @with_rate_limit
     async def _call(self):
