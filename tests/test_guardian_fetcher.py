@@ -19,6 +19,8 @@ async def test_guardian(monkeypatch):
         "quota_sec": 1,
     }
 
-    respx.get("https://content.guardianapis.com/search").respond(200, json=fixture_json)
+    respx.get(
+        "https://content.guardianapis.com/search?section=football&show-fields=body&api-key=dummy"
+    ).respond(200, json=fixture_json)
     n = await GuardianFetcher(cfg).fetch()
     assert n == len(fixture_json["response"]["results"])
