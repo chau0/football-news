@@ -12,6 +12,9 @@ import time
 import functools
 
 import redis.asyncio as aioredis
+from redis.exceptions import RedisError
+
+from football_news.utils.logger import logger
 
 redis = aioredis.from_url("redis://localhost", decode_responses=True)
 
@@ -26,15 +29,19 @@ def with_rate_limit(fn):
     async def wrapper(self, *args, **kwargs):
         k_sec, k_day = _count_keys(self.cfg["name"])
         while True:
-            # bump counters atomically
-            results = (
-                await redis.pipeline()
-                .incr(k_sec)
-                .expire(k_sec, 1)
-                .incr(k_day)
-                .expire(k_day, 60 * 60 * 24 + 60)
-                .execute()
-            )
+            try:
+                # bump counters atomically
+                results = (
+                    await redis.pipeline()
+                    .incr(k_sec)
+                    .expire(k_sec, 1)
+                    .incr(k_day)
+                    .expire(k_day, 60 * 60 * 24 + 60)
+                    .execute()
+                )
+            except RedisError as exc:
+                logger.warning("Redis unavailable, skipping rate limit: %s", exc)
+                break
 
             remaining_sec, _, remaining_day, _ = results
 
