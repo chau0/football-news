@@ -75,7 +75,7 @@ class GuardianFetcher(BaseFetcher):
             return len(rows)
 
         except httpx.HTTPStatusError as e:
-            logger.error("HTTP error fetching from Guardian: %s", e)
+            logger.exception("HTTP error fetching from Guardian: %s", e.response)
             return 0
         except Exception as e:
             logger.error("Unexpected error fetching from Guardian: %s", e)

@@ -13,7 +13,7 @@ def create_test_tables():
 
 
 @pytest.fixture(autouse=True)
-def clean_db():
+def clean_db(create_test_tables):  # Add dependency on create_test_tables
     """Clean database before each test."""
     from football_news.storage.db import SessionLocal
     from football_news.storage.models import Story

@@ -13,6 +13,8 @@ redis[hiredis]
 PyYAML
 beautifulsoup4
 lxml
-respx          # test
-pytest-httpx   # test
-
+uvicorn[standard]
+spacy==3.7.4
+spacy-lookups-data        # for lemmatizer
+google-generativeai
+fastapi

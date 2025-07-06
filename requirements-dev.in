@@ -6,3 +6,6 @@ black
 pre-commit
 alembic
 mypy
+respx          # test
+pytest-httpx   # testfastapi
+pytest-mock               # tests

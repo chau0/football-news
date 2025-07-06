@@ -12,6 +12,9 @@ def load_json_cfg(path: str | Path = "config/json.yml") -> List[Dict[str, Any]]:
     for s in sources:
         if isinstance(s.get("endpoint"), str):
             s["endpoint"] = os.path.expandvars(s["endpoint"])
+        # Also expand environment variables in api_key field
+        if isinstance(s.get("api_key"), str):
+            s["api_key"] = os.path.expandvars(s["api_key"])
     return sources
 
 
