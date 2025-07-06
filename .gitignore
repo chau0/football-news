@@ -175,4 +175,9 @@ pyrightconfig.json
 
 *.db
 
+# Logs
+logs/
+*.log
+*.log.*
+
 # End of https://www.toptal.com/developers/gitignore/api/python

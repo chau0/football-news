@@ -1,0 +1,11 @@
+json_sources:
+  - name: guardian
+    endpoint: "https://content.guardianapis.com/search?section=football&show-fields=all&api-key={api_key}"
+    api_key: "${GUARDIAN_KEY}"
+    quota_day: 500       # free-tier
+    quota_sec: 1         # 1 req/s
+  - name: newsapi
+    endpoint: "https://newsapi.org/v2/top-headlines?category=sports&q=football&apiKey={api_key}"
+    api_key: "${NEWSAPI_KEY}"
+    quota_day: 100
+    quota_sec: 2

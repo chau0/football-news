@@ -1,0 +1,18 @@
+html_sources:
+  - name: reuters_soccer
+    url: "https://www.reuters.com/world/soccer"
+    list_selector: "article.story"
+    link_selector: "a::attr(href)"
+    title_selector: "h3.story-title"
+    date_selector: "time::attr(datetime)"
+    quota_day: 1000
+    quota_sec: 2
+
+  - name: sky_football
+    url: "https://www.skysports.com/football/news"
+    list_selector: "div.news-list__item"
+    link_selector: "a::attr(href)"
+    title_selector: "h4"
+    date_selector: "span.time-date"
+    quota_day: 1000
+    quota_sec: 2

@@ -8,3 +8,11 @@ typer
 rich
 orjson
 python-dotenv
+loguru
+redis[hiredis]
+PyYAML
+beautifulsoup4
+lxml
+respx          # test
+pytest-httpx   # test
+
